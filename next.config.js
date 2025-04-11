@@ -1,8 +1,10 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, { dev, isServer }) => {
-    if (dev && !isServer) {
-      config.cache = false;
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+        path: false,
+      };
     }
     return config;
   },
